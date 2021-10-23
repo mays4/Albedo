@@ -5,6 +5,29 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
+const express = require('express');
+const router  = express.Router();
+
+
+
+module.exports = (db) => {
+  router.get("/", (req, res) => {
+    db.query(`SELECT * FROM orders;`)
+      .then(data => {
+        console.log('data: ', data.rows);
+          //Step 1:  Get list of orders
+          //Step 2:  Pass an array of orders into the ejs template for rendering
+        const templateVars = { orders: data.rows };
+        res.render('fulfillment', templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  return router;
+};
 
 
 

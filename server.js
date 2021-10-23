@@ -37,13 +37,13 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
-// const fulfillRoutes = require("./routes/fulfillment");
+const fulfillRoutes = require("./routes/fulfillment");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-// app.use("/api/fulfillment", fulfillRoutes(db));
+app.use("/fulfillment", fulfillRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -54,11 +54,9 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// Temporary fulfillment route
-app.get("/fulfillment", (req, res) => {
-  res.render('fulfillment');
-})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
