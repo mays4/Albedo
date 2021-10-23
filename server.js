@@ -49,8 +49,107 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("menu");
 });
+app.get("/:category_id", (req, res) => {
+  res.render("menu");
+});
+
+app.get("/api/menu",(req,res) =>{
+
+  const getItem = function() {
+    return db
+      .query(`SELECT * FROM items`)
+      .then((result) => {
+        res.json(result.rows);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+  getItem()
+});
+
+app.get("/api/menu2",(req,res) =>{
+  const getItem = function() {
+    const menus = {};
+    return db
+      .query(`SELECT * FROM items`)
+      .then((result) => {
+        menus.menus = result.rows
+        db.query(`SELECT * FROM categories
+    `)
+    .then((result) => {
+      console.log("re",result.rows)
+      menus.categories = result.rows
+      res.json(menus);
+    })
+        // res.json(result.rows);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+  getItem()
+});
+
+app.get("/api/menu2/:category_id",(req,res) =>{
+  const category_id = req.params.category_id
+  const getItem = function() {
+    const menus = {};
+    return db
+      .query(`SELECT * FROM items where category_id = $1`, [category_id])
+      .then((result) => {
+        menus.menus = result.rows
+        console.log("res++++",result.rows)
+        db.query(`SELECT * FROM categories
+    `)
+    .then((result) => {
+      console.log("re",result.rows)
+      menus.categories = result.rows
+      res.json(menus);
+    })
+        // res.json(result.rows);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+  getItem()
+});
+
+app.get("/api/catacories",(req,res) =>{
+  const getCatogories=function (){
+    return db.query(`SELECT * FROM categories
+    `)
+    .then((result) => {
+      console.log("re",result.rows)
+      res.json(result.rows);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+   }
+   getCatogories()
+  });
+
+
+  app.post("/api/",(req,res) =>{
+    const addOrder=function (){
+      return db.query(`Insert Into orders value(qty) categories
+      `)
+      .then((result) => {
+        // console.log("re",result.rows)
+        res.json(result.rows);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+     }
+     getCatogories()
+    });
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
