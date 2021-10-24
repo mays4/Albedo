@@ -21,6 +21,7 @@
   <!-- Render a table where the last column of the table is a fulfill order button -->
   <!-- When the button is clicked, that will hit the backend and send the order id in, -->
   <!-- possibly as a hidden input (that contains the order id) -->
+  <!-- create a dynamic form that when a user clicks on it hits the backend and sets the order as fulfilled -->
 
 
   <!-- This will be the header at the top of the page -->
@@ -48,6 +49,7 @@
         <header class="orders-header">ACTIVE ORDERS</header>
         <div class="orders-container">
 
+          <!-- The loop will start here to display all orders -->
           <section class="order-box">
 
             <main class="order-details">
@@ -59,26 +61,17 @@
               </div>
 
               <div class="order-details">
-                <div class="order-number">Order#: 1234567890</div>
+                <div class="order-number">Order#: <%= orders.order_no %></div>
 
+                <!-- Need a way to extract all items in the order here -->
                 <table class="order-items">
                   <tr class="order-line">
                     <td class="order-qty">2x</td>
                     <td class="order-item">Chicken Tandoori</td>
                   </tr>
-
-                  <tr class="order-line">
-                    <td class="order-qty">1x</td>
-                    <td class="order-item">Salad</td>
-                  </tr>
-
-                  <tr class="order-line">
-                    <td class="order-qty">2x</td>
-                    <td class="order-item">Cheese Cake</td>
-                  </tr>
                 </table>
 
-                <div class="order-notes">Note: Add Raisins</div>
+                <div class="order-notes"><%= orders.order_note %></div>
               </div>
 
               <div class="order-fulfilled">
@@ -90,10 +83,11 @@
             </main>
 
             <footer class="order-time">
-              <div class="time-ordered">12 min ago</div>
-              <div class="time-remaining">20 min remaining</div>
+              <div class="time-ordered"><%= orders.order_time %></div>
+              <div class="time-remaining"><%= orders.estimated_time %></div>
             </footer>
           </section>
+          <!-- The loop will end here -->
 
         </div>
       </div>
