@@ -1,6 +1,9 @@
 $(() => {
   const url = location.href;
+  console.log("url",url)
   const category_id = url.substr(22, url.length - 1);
+
+  console.log("ca",category_id)
   $("button.cart").click(() => {
     $("div.container").slideToggle("slow");
     $("div.container").focus();
@@ -52,6 +55,7 @@ $(() => {
     return div.innerHTML;
   };
   const fetchData = (endpoint) => {
+    console.log("endpoint",endpoint)
     $.ajax({
       url: `${endpoint}`,
       method: "GET",
@@ -67,23 +71,24 @@ $(() => {
     });
   };
   if (!category_id) {
-    fetchData("/api/menu2");
+    fetchData("/api/menu");
   } else {
-    fetchData("/api/menu2/" + category_id);
+    fetchData("/api/menu/" + category_id);
+
   }
 
-  const fetchData2 = (endpoint2) => {
-    $.ajax({
-      url: `${endpoint2}`,
-      type: "POST",
-      dataType: "json",
-      success: (data) => {
-        console.log("dataCart", data);
-        createOrderElement(data);
-      },
-    });
-  };
-  fetchData2("/api/menu2");
+  // const fetchData2 = (endpoint2) => {
+  //   $.ajax({
+  //     url: `${endpoint2}`,
+  //     type: "POST",
+  //     dataType: "json",
+  //     success: (data) => {
+  //       console.log("dataCart", data);
+  //       createOrderElement(data);
+  //     },
+  //   });
+  // };
+  // fetchData2("/");
 
   const generateItems = function (items) {
     $("section.item_container").empty();
@@ -94,7 +99,7 @@ $(() => {
   };
 
   const createItemElement = function (item) {
-    const item_conainer = `
+    const item_container = `
   <div class="cont">
     <div>
       <img src="${item.image_url}"class="img"/>
@@ -126,7 +131,7 @@ $(() => {
     </div>
   </div>
   `;
-    return item_conainer;
+    return item_container;
   };
 
   const generateCatagories = function (catagoies) {
@@ -153,14 +158,14 @@ $(() => {
       const id = $(this).attr("id");
       const name = $(this).attr("data-name");
       const price = $(this).parents().siblings(".price_adjust").text();
-      const item = { qty, id, name, price };
+      const item = {qty, id, name, price};
       console.log("item", item);
       if (qty !== "0") {
         localOrderItems.push(item);
         $(".order_list").empty();
         priceItems.length = 0;
         for (let orderItem of localOrderItems) {
-          // console.log("ll", localOrderItems);
+          // console.log("localOrderItems", localOrderItems);
           const $itemOrder = createOrderElement(orderItem);
           if (orderItem.qty > 0) {
             $(".order_list").prepend($itemOrder);
@@ -189,7 +194,7 @@ $(() => {
 					<td class="item-name"><input type="text" class="name_item" name="name" readonly  size="10" value="${item.name}"/></td>
 					<td class="item-price"><input  class="price_item" type="text" name="price" readonly  size="5" value="${item.price}"/></td>
 
-          <td><input type="hidden" name="id" size="2" value="${Number(item.id)}"/></td>
+          <td><input type="hidden" name="id" size="2" value="${item.id}"/></td>
 
         </tr>
     `;

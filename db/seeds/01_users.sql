@@ -25,7 +25,7 @@ INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('bu
 INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('pizza',' Dough, sauce (usually tomato sauce), cheese ',309,5,'images/pizza.jpg',6.99);
 INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('chicken scallop','fried chicken breast',344,5,'images/chicken.jpg',7.99);
 
-INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('tea',' black tea ',1,8,'images/tea.jpg',2.99);
+INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('tea','black tea',1,8,'images/tea.jpg',2.99);
 INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('coffee','coffee with milk ',31,8,'images/coffee.jpg',3.45);
 
 

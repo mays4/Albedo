@@ -41,6 +41,8 @@ CREATE TABLE items_orders(
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  customer_name VARCHAR(50),
+  phone_number VARCHAR(32),
   time  time  NOT NULL,
   estimated_time  time NOT NULL,
   completed_time   time NOT NULL,

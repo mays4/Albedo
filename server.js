@@ -3,7 +3,7 @@ require("dotenv").config();
 //  const {createOrderElement} = require("./public/scripts/menu");
 
 // Web server config
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -37,12 +37,16 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+const orders = require("./routes/orders");
+const category = require("./routes/category");
+const cart = require("./routes/cart");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+app.use("/api/menu", orders(db));
+app.use("/api/menu",category(db));
+app.use("/api/cart", cart(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -55,119 +59,6 @@ app.get("/", (req, res) => {
 app.get("/:category_id", (req, res) => {
   res.render("menu");
 });
-
-app.get("/api/menu",(req,res) =>{
-
-  const getItem = function() {
-    return db
-      .query(`SELECT * FROM items`)
-      .then((result) => {
-        res.json(result.rows);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }
-  getItem()
-});
-
-app.get("/api/menu2",(req,res) =>{
-
-  const getItem = function() {
-    const menus = {};
-    return db
-      .query(`SELECT * FROM items`)
-      .then((result) => {
-        menus.menus = result.rows
-        db.query(`SELECT * FROM categories
-    `)
-    .then((result) => {
-      // console.log("re",result.rows)
-      menus.categories = result.rows
-      res.json(menus);
-    })
-        // res.json(result.rows);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }
-  getItem()
-});
-
-app.get("/api/menu2/:category_id",(req,res) =>{
-
-  const category_id = req.params.category_id
-  const getItem = function() {
-    const menus = {};
-    return db
-      .query(`SELECT * FROM items where category_id = $1`, [category_id])
-      .then((result) => {
-        menus.menus = result.rows
-        // console.log("res++++",result.rows)
-        db.query(`SELECT * FROM categories
-    `)
-    .then((result) => {
-      // console.log("re",result.rows)
-      menus.categories = result.rows
-      res.json(menus);
-    })
-        // res.json(result.rows);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }
-  getItem()
-});
-
-app.get("/api/catacories",(req,res) =>{
-
-  const getCatogories=function (){
-    return db.query(`SELECT * FROM categories
-    `)
-    .then((result) => {
-      // console.log("re",result.rows)
-      res.json(result.rows);
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-   }
-   getCatogories();
-  });
-
-
-  app.post("/api/cart",(req,res) => {
-    // console.log("req.body",req.body);
-    // console.log("req.parms",req.params);
-    // console.log("body",res.json)
-    // const order = createOrderElement(item);
-     const qty = req.body.qty;
-     const name = req.body.name;
-     const price = req.body.price;
-     const id = req.body.id;
-    // res.send(JSON.stringify(req.body));
-
-    res.render('cart');
-    console.log("qty",qty);
-    console.log("id",id)
-    const addOrder=function (){
-      const orderList=`INSERT INTO items_orders(quantity) values($1) RETURNING *`;
-      return db.query(orderList,[qty])
-
-      .then((result) => {
-        // console.log("re",result.rows)
-        return(result.rows);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-     }
-     addOrder()
-    });
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
