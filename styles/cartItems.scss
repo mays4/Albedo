@@ -1,0 +1,15 @@
+.contain{
+  background-color: rgb(157, 61, 170);
+  border-radius: 5px;
+  border-color: brown;
+  box-shadow: blue($color: #da8888);
+  border-width: thick;
+  justify-content: center;
+  word-wrap: break-word;
+  width:100%;
+
+}
+.sec-cont{
+  display: flex;
+  justify-content: center;
+}

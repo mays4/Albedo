@@ -46,5 +46,4 @@ CREATE TABLE orders (
   completed_time   time NOT NULL,
   complete BOOLEAN NOT NULL DEFAULT TRUE
 
-
 );

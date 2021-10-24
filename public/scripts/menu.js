@@ -1,15 +1,13 @@
-
 $(() => {
   const url = location.href;
-  const category_id = url.substr(22, url.length - 1)
-  // alert(category_id)
+  const category_id = url.substr(22, url.length - 1);
   $("button.cart").click(() => {
     $("div.container").slideToggle("slow");
-    $("div.container").focus()
+    $("div.container").focus();
   });
-  $('.item_container').on('click', '#order', function () {
+  $(".item_container").on("click", "#order", function () {
     $("div.container").slideToggle("slow");
-    $("div.container").focus()
+    $("div.container").focus();
   });
 
   $(".container").on("click", ".open", function () {
@@ -19,38 +17,34 @@ $(() => {
   $(".close, .popup").on("click", function () {
     $(".popup, .popup-content").removeClass("active");
   });
-  $(function () {
-    $('.item_container').on('click', '.add', function () {
-      // $('.minus,.add').on('click', function() {
-      // alert("3321dd")
-      let $qty = $(this).closest('p').find('.qty'),
 
-        currentVal = parseInt($qty.val()),
-        isAdd = $(this).hasClass('add');
-      !isNaN(currentVal) && $qty.val(
-        isAdd ? ++currentVal : (currentVal > 0 ? --currentVal : currentVal)
+  $(".item_container").on("click", ".add", function () {
+    let $qty = $(this).closest("p").find(".qty"),
+      currentVal = parseInt($qty.val()),
+      isAdd = $(this).hasClass("add");
+    !isNaN(currentVal) &&
+      $qty.val(
+        isAdd ? ++currentVal : currentVal > 0 ? --currentVal : currentVal
       );
-      console.log("q",$qty)
-      console.log($(this).parent().siblings(".qty").val())
-      generateOrder();
 
-    });
+    console.log($(this).parent().siblings(".qty").val());
+    generateOrder();
   });
-  $(function () {
-    $('.item_container').on('click', '.minus', function () {
-      // $('.minus,.add').on('click', function() {
-
-      let $qty = $(this).closest('p').find('.qty'),
-        currentVal = parseInt($qty.val()),
-        isAdd = $(this).hasClass('add');
-      !isNaN(currentVal) && $qty.val(
-        isAdd ? ++currentVal : (currentVal > 0 ? --currentVal : currentVal)
+  $(".item_container").on("click", ".minus", function () {
+    let $qty = $(this).closest("p").find(".qty"),
+      currentVal = parseInt($qty.val()),
+      isAdd = $(this).hasClass("add");
+    !isNaN(currentVal) &&
+      $qty.val(
+        isAdd ? ++currentVal : currentVal > 0 ? --currentVal : currentVal
       );
-      generateOrder();
-
-    });
+    generateOrder();
   });
 
+  $(".main_container").on("click", "#checkout_button", function () {
+    console.log("checkout click handler excuted");
+    // createItemElement(item)
+  });
 
   const escape = function (str) {
     let div = document.createElement("div");
@@ -66,23 +60,30 @@ $(() => {
         generateItems(data.menus);
         generateCatagories(data.categories);
         generateOrder();
-        // if (endpoint === "/api/menu") {
-
-        // } else if (endpoint === "/api/catacories")
-        // generateCatagories(data);
       },
       error: (err) => {
         console.log(`there was an error: ${err}`);
-      }
+      },
     });
-  }
+  };
   if (!category_id) {
     fetchData("/api/menu2");
   } else {
     fetchData("/api/menu2/" + category_id);
   }
 
-  // fetchData("/api/catacories");
+  const fetchData2 = (endpoint2) => {
+    $.ajax({
+      url: `${endpoint2}`,
+      type: "POST",
+      dataType: "json",
+      success: (data) => {
+        console.log("dataCart", data);
+        createOrderElement(data);
+      },
+    });
+  };
+  fetchData2("/api/menu2");
 
   const generateItems = function (items) {
     $("section.item_container").empty();
@@ -125,7 +126,7 @@ $(() => {
     </div>
   </div>
   `;
-    return item_conainer
+    return item_conainer;
   };
 
   const generateCatagories = function (catagoies) {
@@ -134,92 +135,64 @@ $(() => {
       const $catagory = createCatagoryElement(catagory);
       $("div.overlay-content").prepend($catagory);
     }
-  }
+  };
   const createCatagoryElement = function (catagory) {
     const catagory_container = `
     <a href="/${catagory.id}">${catagory.name}</a>
-    `
-    return catagory_container
+    `;
+    return catagory_container;
   };
 
   let orderItems = [];
   let priceItems = [];
   const generateOrder = function (menuItem) {
-    $(".oreder_list").empty();
+    $(".order_list").empty();
     const localOrderItems = [];
     $(".qty").each(function () {
-      const qty = $(this).val()
-      const id = $(this).attr("id")
-      const name = $(this).attr("data-name")
-      const price = $(this).parents().siblings(".price_adjust").text()
-      const item = { qty, id, name ,price};
-       console.log("item", item)
-       if(qty !== '0'){
-         localOrderItems.push(item)
-         $(".oreder_list").empty();
-         priceItems.length = 0
-         for(let orderItem of localOrderItems){
-           console.log("ll",localOrderItems)
-           const $itemOrder = createOrderElement(orderItem);
-           if (orderItem.qty > 0) {
-             $(".oreder_list").prepend($itemOrder);
-            }
+      const qty = $(this).val();
+      const id = $(this).attr("id");
+      const name = $(this).attr("data-name");
+      const price = $(this).parents().siblings(".price_adjust").text();
+      const item = { qty, id, name, price };
+      console.log("item", item);
+      if (qty !== "0") {
+        localOrderItems.push(item);
+        $(".order_list").empty();
+        priceItems.length = 0;
+        for (let orderItem of localOrderItems) {
+          // console.log("ll", localOrderItems);
+          const $itemOrder = createOrderElement(orderItem);
+          if (orderItem.qty > 0) {
+            $(".order_list").prepend($itemOrder);
           }
-          totalPrice()
         }
+        totalPrice();
+      }
     });
-  }
+  };
   const totalPrice = () => {
     let priceArr = 0;
     $(".item-total").each(function () {
-     let qty=  $(this).children(".item-qty").text()
-      let price = $(this).children(".item-price").text()
-     let total = Number(qty) * Number(price)
-     priceArr += total
-    })
-    $(".total-price").text(`total ${priceArr.toFixed(2)}`)
-    console.log("total",priceArr)
-
-  }
+      let qty = $(this).children(".item-qty").children(".qty_item").attr("value");
+      let price = $(this).children(".item-price").children(".price_item").attr("value");
+      let total = Number(qty) * Number(price);
+      let id = $(this).children(".item-name").children(".name_item").attr("id");
+      priceArr += total;
+    });
+    $(".total-price").text(`total ${priceArr.toFixed(2)}`);
+    // console.log("total", priceArr);
+  };
   const createOrderElement = function (item) {
     const order_container = `
+        <tr class="item-total">
+          <td class="item-qty"><input class="qty_item" type="text" name="qty" size="2"  value="${item.qty}"/></td>
+					<td class="item-name"><input type="text" class="name_item" name="name" readonly  size="10" value="${item.name}"/></td>
+					<td class="item-price"><input  class="price_item" type="text" name="price" readonly  size="5" value="${item.price}"/></td>
 
-        <tr class ="item-total">
-          <td class ="item-qty">${item.qty}</td>
-					<td>${item.name}</td>
-					<td class ="item-price">${item.price}</td>
-          <td>${item.total}</td>
-      </tr>
+          <td><input type="hidden" name="id" size="2" value="${Number(item.id)}"/></td>
 
-    `
-    return order_container
+        </tr>
+    `;
+    return order_container;
   };
-
-  const getUserName = function () {
-    $(".user-name").each(function () {
-      const username = $(this).val()
-
-    });
-    $(".phone").each(function () {
-
-      const userPhone = $(this).val()
-    })
-
-
-  }
-
-  const CreateUserElement = function (user) {
-    const user_container = `
-      <il> username</il>
-      <il> <input class = "user-name" data-name=${user.name}type="text"> </il>
-      <il>phone number</il>
-      <il> <input  class = "phone" data-name=${user.phone}type="text"></il>
-      <il>
-      <button id ="submit_button" class="close">submit</button>
-      </il>
-  `
-    return user_container
-  }
-
-
 });

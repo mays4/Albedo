@@ -1,12 +1,14 @@
 .container{
   height: 66.2%;
-  width: 200px;
+  width: 300px;
    position: absolute;
   right: 0;
   top: 120px;
   padding-top: 40px;
   background-color: rgb(246, 250, 251);
   margin-top: 0;
+  padding-right: 20px;
+  margin-right: 40px;
 }
 .container  {
   padding: 8px;
@@ -41,7 +43,7 @@ div.container{
   align-items: center;
 }
 
-.oreder_list{
+.order_list{
   font-size: 10px;
 }
 .cart_title{
@@ -61,9 +63,48 @@ div.container{
 #checkout_button{
   justify-content: center;
   background-color: thistle;
-  padding-left: 20px;
+  // padding-left: 40px;
+  align-items: center;
+  margin-left: 80px;
 }
 .price_adjust{
   padding-right: 1.5em;
   margin-top: 10px;
+}
+.table_org{
+  font-size: 13px;
+  font-style: italic;
+  justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+}
+.item-qty{
+  font-size: 13px;
+  font-style: italic;
+  // padding-right: 10px;
+}
+.item-price{
+  font-size: 13px;
+  font-style: italic;
+  // padding-right: 10px;
+}
+.item-name{
+  font-size: 13px;
+  font-style: italic;
+  // padding-right: 10px;
+}
+.item-total{
+//  display: flex;
+//  justify-content: space-between;
+}
+.my-cart{
+  // align-items: center;
+  padding-left: 40px;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}
+.total-price{
+  font-size: medium;
+  font-style: italic;
+  margin-left: 80px;
 }

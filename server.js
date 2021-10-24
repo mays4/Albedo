@@ -1,8 +1,9 @@
 // load .env data into process.env
 require("dotenv").config();
+//  const {createOrderElement} = require("./public/scripts/menu");
 
 // Web server config
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -71,6 +72,7 @@ app.get("/api/menu",(req,res) =>{
 });
 
 app.get("/api/menu2",(req,res) =>{
+
   const getItem = function() {
     const menus = {};
     return db
@@ -80,7 +82,7 @@ app.get("/api/menu2",(req,res) =>{
         db.query(`SELECT * FROM categories
     `)
     .then((result) => {
-      console.log("re",result.rows)
+      // console.log("re",result.rows)
       menus.categories = result.rows
       res.json(menus);
     })
@@ -94,6 +96,7 @@ app.get("/api/menu2",(req,res) =>{
 });
 
 app.get("/api/menu2/:category_id",(req,res) =>{
+
   const category_id = req.params.category_id
   const getItem = function() {
     const menus = {};
@@ -101,11 +104,11 @@ app.get("/api/menu2/:category_id",(req,res) =>{
       .query(`SELECT * FROM items where category_id = $1`, [category_id])
       .then((result) => {
         menus.menus = result.rows
-        console.log("res++++",result.rows)
+        // console.log("res++++",result.rows)
         db.query(`SELECT * FROM categories
     `)
     .then((result) => {
-      console.log("re",result.rows)
+      // console.log("re",result.rows)
       menus.categories = result.rows
       res.json(menus);
     })
@@ -119,34 +122,49 @@ app.get("/api/menu2/:category_id",(req,res) =>{
 });
 
 app.get("/api/catacories",(req,res) =>{
+
   const getCatogories=function (){
     return db.query(`SELECT * FROM categories
     `)
     .then((result) => {
-      console.log("re",result.rows)
+      // console.log("re",result.rows)
       res.json(result.rows);
     })
     .catch((err) => {
       console.log(err.message);
     });
    }
-   getCatogories()
+   getCatogories();
   });
 
 
-  app.post("/api/",(req,res) =>{
+  app.post("/api/cart",(req,res) => {
+    // console.log("req.body",req.body);
+    // console.log("req.parms",req.params);
+    // console.log("body",res.json)
+    // const order = createOrderElement(item);
+     const qty = req.body.qty;
+     const name = req.body.name;
+     const price = req.body.price;
+     const id = req.body.id;
+    // res.send(JSON.stringify(req.body));
+
+    res.render('cart');
+    console.log("qty",qty);
+    console.log("id",id)
     const addOrder=function (){
-      return db.query(`Insert Into orders value(qty) categories
-      `)
+      const orderList=`INSERT INTO items_orders(quantity) values($1) RETURNING *`;
+      return db.query(orderList,[qty])
+
       .then((result) => {
         // console.log("re",result.rows)
-        res.json(result.rows);
+        return(result.rows);
       })
       .catch((err) => {
         console.log(err.message);
       });
      }
-     getCatogories()
+     addOrder()
     });
 
 
