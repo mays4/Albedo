@@ -43,7 +43,7 @@ const fulfillRoutes = require("./routes/fulfillment");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-app.use("/fulfillment", fulfillRoutes(db));
+app.use("/api/fulfillment", fulfillRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page

@@ -14,7 +14,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM orders;`)
       .then(data => {
-        console.log('data: ', data.rows);
+        console.log('data: ', data);
           //Step 1:  Get list of orders
           //Step 2:  Pass an array of orders into the ejs template for rendering
         const templateVars = { orders: data.rows };

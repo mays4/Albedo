@@ -4,12 +4,89 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <title>Fulfillment</title>
 </head>
 <body>
-  <div>This will be the orders fulfillment rendered page</div>
   <!-- Render a table where the last column of the table is a fulfill order button -->
   <!-- When the button is clicked, that will hit the backend and send the order id in, -->
   <!-- possibly as a hidden input (that contains the order id) -->
+
+
+  <!-- This will be the header at the top of the page -->
+  <header class="main-header">Albedo</header>
+
+
+  <!-- This div will hold both the left side navbar and the orders container -->
+  <div class="owner-page">
+
+    <!-- This will be the left side navbar -->
+    <nav class="orders-navbar">
+      <section class="nav-buttons">
+        <button class="active-orders" type="button">ACTIVE ORDERS</button>
+        <button class="orders-history" type="button">ORDERS HISTORY</button>
+        <button class="edit-menu" type="button">EDIT MENU</button>
+        <button class="dashboard" type="button">DASHBOARD</button>
+        <button class="logout" type="button">LOGOUT</button>
+        <div></div>
+      </section>
+    </nav>
+
+
+      <!-- This will be the main container for the orders -->
+      <div class="owner-area">
+        <header class="orders-header">ACTIVE ORDERS</header>
+        <div class="orders-container">
+
+          <section class="order-box">
+
+            <main class="order-details">
+
+              <div class="set-time">
+                <button class="set-time-button">15 MIN</button>
+                <button class="set-time-button">30 MIN</button>
+                <button class="set-time-button">45 MIN</button>
+              </div>
+
+              <div class="order-details">
+                <div class="order-number">Order#: 1234567890</div>
+
+                <table class="order-items">
+                  <tr class="order-line">
+                    <td class="order-qty">2x</td>
+                    <td class="order-item">Chicken Tandoori</td>
+                  </tr>
+
+                  <tr class="order-line">
+                    <td class="order-qty">1x</td>
+                    <td class="order-item">Salad</td>
+                  </tr>
+
+                  <tr class="order-line">
+                    <td class="order-qty">2x</td>
+                    <td class="order-item">Cheese Cake</td>
+                  </tr>
+                </table>
+
+                <div class="order-notes">Note: Add Raisins</div>
+              </div>
+
+              <div class="order-fulfilled">
+                <button class="order-fulfilled-button" type="button">
+                  <i class="fa-solid fa-check"></i>
+                </button>
+              </div>
+
+            </main>
+
+            <footer class="order-time">
+              <div class="time-ordered">12 min ago</div>
+              <div class="time-remaining">20 min remaining</div>
+            </footer>
+          </section>
+
+        </div>
+      </div>
+
 </body>
 </html>
