@@ -40,6 +40,7 @@ const usersRoutes = require("./routes/users");
 const orders = require("./routes/orders");
 const category = require("./routes/category");
 const cart = require("./routes/cart");
+const confirm = require("./routes/confirm");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -47,6 +48,7 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/menu", orders(db));
 app.use("/api/menu",category(db));
 app.use("/api/cart", cart(db));
+app.use("/api/confirm", confirm(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page

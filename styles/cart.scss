@@ -55,10 +55,15 @@ div.container{
   flex-direction: column;
   margin: 20px;
 }
-#submit_button button {
-  justify-content: center;
-  background-color: thistle;
-  padding-left: 20px;
+#submit_button  {
+  // justify-content: center;
+  // background-color: rgb(231, 151, 231);
+  // padding-left: 20px;
+  // margin-top: 20px;
+  background-color: rgb(219, 169, 235);
+  margin-top: 20px;
+  align-self: center;
+  margin-left: 50px;
 }
 #checkout_button{
   justify-content: center;
@@ -93,10 +98,10 @@ div.container{
   font-style: italic;
   // padding-right: 10px;
 }
-.item-total{
+// .item-total{
 //  display: flex;
 //  justify-content: space-between;
-}
+// }
 .my-cart{
   // align-items: center;
   padding-left: 40px;

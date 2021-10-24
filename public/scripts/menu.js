@@ -88,7 +88,7 @@ $(() => {
   //     },
   //   });
   // };
-  // fetchData2("/");
+  // fetchData2("/api/cart");
 
   const generateItems = function (items) {
     $("section.item_container").empty();
@@ -148,7 +148,6 @@ $(() => {
     return catagory_container;
   };
 
-  let orderItems = [];
   let priceItems = [];
   const generateOrder = function (menuItem) {
     $(".order_list").empty();
@@ -165,7 +164,6 @@ $(() => {
         $(".order_list").empty();
         priceItems.length = 0;
         for (let orderItem of localOrderItems) {
-          // console.log("localOrderItems", localOrderItems);
           const $itemOrder = createOrderElement(orderItem);
           if (orderItem.qty > 0) {
             $(".order_list").prepend($itemOrder);
@@ -185,7 +183,6 @@ $(() => {
       priceArr += total;
     });
     $(".total-price").text(`total ${priceArr.toFixed(2)}`);
-    // console.log("total", priceArr);
   };
   const createOrderElement = function (item) {
     const order_container = `
@@ -193,7 +190,6 @@ $(() => {
           <td class="item-qty"><input class="qty_item" type="text" name="qty" size="2"  value="${item.qty}"/></td>
 					<td class="item-name"><input type="text" class="name_item" name="name" readonly  size="10" value="${item.name}"/></td>
 					<td class="item-price"><input  class="price_item" type="text" name="price" readonly  size="5" value="${item.price}"/></td>
-
           <td><input type="hidden" name="id" size="2" value="${item.id}"/></td>
 
         </tr>
