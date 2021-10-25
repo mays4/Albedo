@@ -43,9 +43,9 @@ CREATE TABLE orders (
   user_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   customer_name VARCHAR(50),
   phone_number VARCHAR(32),
-  time  time  NOT NULL,
-  estimated_time  time NOT NULL,
-  completed_time   time NOT NULL,
-  complete BOOLEAN NOT NULL DEFAULT TRUE
+  time  time  ,
+  estimated_time  time ,
+  completed_time   time ,
+  complete BOOLEAN  DEFAULT TRUE
 
 );
