@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 module.exports = (db) => {
   router.post("/",(req,res) => {
+    console.log("re",req.body)
      const qty = req.body.qty;
         const orderQuery=`INSERT INTO items_orders(order_id)
         SELECT user_id FROM orders
