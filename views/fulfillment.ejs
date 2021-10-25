@@ -50,9 +50,10 @@
         <div class="orders-container">
 
           <!-- The loop will start here to display all orders -->
-          <section class="order-box">
+          <% for (const order of orders) { %>
+          <section class="order-section">
 
-            <main class="order-details">
+            <main class="order-box">
 
               <div class="set-time">
                 <button class="set-time-button">15 MIN</button>
@@ -61,7 +62,7 @@
               </div>
 
               <div class="order-details">
-                <div class="order-number">Order#: <%= orders.order_no %></div>
+                <div class="order-number">Order#: <%= order.order_no %></div>
 
                 <!-- Need a way to extract all items in the order here -->
                 <table class="order-items">
@@ -70,8 +71,9 @@
                     <td class="order-item">Chicken Tandoori</td>
                   </tr>
                 </table>
+                <!-- End of loop for item name and quantity -->
 
-                <div class="order-notes"><%= orders.order_note %></div>
+                <div class="order-notes"><%= order.order_note %></div>
               </div>
 
               <div class="order-fulfilled">
@@ -83,11 +85,12 @@
             </main>
 
             <footer class="order-time">
-              <div class="time-ordered"><%= orders.order_time %></div>
-              <div class="time-remaining"><%= orders.estimated_time %></div>
+              <div class="time-ordered"><%= order.order_time %></div>
+              <div class="time-remaining"><%= order.estimated_time %></div>
             </footer>
           </section>
           <!-- The loop will end here -->
+          <% } %>
 
         </div>
       </div>
