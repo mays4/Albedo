@@ -31,16 +31,9 @@ CREATE TABLE items (
   price decimal(3,2) NOT NULL DEFAULT 0
 
 );
-CREATE TABLE items_orders(
-  id SERIAL PRIMARY KEY NOT NULL,
-  item_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-  order_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-  quantity INTEGER  NOT NULL DEFAULT 0
-
-);
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  user_id SERIAL,
   customer_name VARCHAR(50),
   phone_number VARCHAR(32),
   time  time  ,
@@ -49,3 +42,10 @@ CREATE TABLE orders (
   complete BOOLEAN  DEFAULT TRUE
 
 );
+CREATE TABLE items_orders(
+  id SERIAL PRIMARY KEY NOT NULL,
+  item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+  quantity INTEGER  NOT NULL DEFAULT 0
+);
+

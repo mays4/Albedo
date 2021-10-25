@@ -44,7 +44,14 @@ $(() => {
     generateOrder();
   });
 
-  $(".main_container").on("click", "#checkout_button", function () {
+  $(".main_container").on("click", "#checkout_button", function (event) {
+
+    $.ajax('GET', 'url').then(function(resp) {
+
+      // your code here
+
+     _this.unbind('submit').submit(); // continue the submit unbind preventDefault
+    })
     console.log("checkout click handler excuted");
     // createItemElement(item)
   });
@@ -150,7 +157,7 @@ $(() => {
 
   let priceItems = [];
   const generateOrder = function (menuItem) {
-    $(".order_list").empty();
+    // $(".order_list").empty();
     const localOrderItems = [];
     $(".qty").each(function () {
       const qty = $(this).val();
