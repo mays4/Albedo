@@ -73,12 +73,12 @@ $(() => {
     });
   };
   if (!category_id) {
-    fetchData("/api/menu");
+    fetchData("/api/menu/");
   } else {
     fetchData("/api/menu/" + category_id);
 
   }
-
+  fetchData("/api/cart/");
   // const fetchData2 = (endpoint2) => {
   //   $.ajax({
   //     url: `${endpoint2}`,
@@ -193,6 +193,7 @@ $(() => {
 					<td class="item-name"><input type="text" class="name_item" name="name" readonly  size="10" value="${item.name}"/></td>
 					<td class="item-price"><input  class="price_item" type="text" name="price" readonly  size="5" value="${item.price}"/></td>
           <td><input type="hidden" name="id" size="2" value="${item.id}"/></td>
+          <td><input type="text" name="cust_name" size="5" value="${item.name}"/></td>
 
         </tr>
     `;

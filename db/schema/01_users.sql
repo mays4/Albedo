@@ -37,15 +37,19 @@ CREATE TABLE orders (
   customer_name VARCHAR(50),
   phone_number VARCHAR(32),
   time  time  ,
-  estimated_time  time ,
-  completed_time   time ,
+  estimated_time time ,
+  completed_time  time ,
   complete BOOLEAN  DEFAULT TRUE
+
 
 );
 CREATE TABLE items_orders(
   id SERIAL PRIMARY KEY NOT NULL,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
-  quantity INTEGER  NOT NULL DEFAULT 0
+  quantity INTEGER  NOT NULL DEFAULT 0,
+  -- name VARCHAR(50),
+  customer_id INTEGER
+
 );
 

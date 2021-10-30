@@ -56,6 +56,10 @@
       function closeNav() {
         document.getElementById("myNav").style.width = "0%";
       }
+    //   const getid = ()=> {
+    //   return Math.floor(Math.random() * 100)
+
+    //  }
     </script>
     <section class ="confirm_container">
     </section>
@@ -63,6 +67,11 @@
       <div class ="contain_confirm">
       <div>
         <p class="sentance_ajust">  thank you for your order </p>
+        <p> <% const getid = ()=> { %>
+         <% return Math.floor(Math.random() * 100) %>
+
+        <% } %> </p>
+        <p class="sentance_ajust">  your order number is <%= getid() %> </p>
       </div>
 
     </section>

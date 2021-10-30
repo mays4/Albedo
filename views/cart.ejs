@@ -55,6 +55,9 @@
       function closeNav() {
         document.getElementById("myNav").style.width = "0%";
       }
+      constgenerateId = function (){
+        return Math.floor(Math.random() * 100)
+      }
     </script>
     <section class ="confirm_container">
     </section>
@@ -68,6 +71,7 @@
           <il> <input  class="user_name"  name="name" type="text" > </il>
           <il> phone number</il>
           <il><input class="phone" name="phone_number" type="text"></il>
+          <!-- <il><input type="hidden" name="id" size="2" value="id"/></il> -->
           <il>
             <button id ="submit_button" type="submit" > submit </button>
           </il>
