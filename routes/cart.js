@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 module.exports = (db) => {
   router.post("/",(req,res) => {
+    const userId = req.session.userId || '';
     console.log("re",req.body)
      const qty = req.body.qty;
      const id = req.body.id;
@@ -17,12 +18,10 @@ module.exports = (db) => {
 
         for (let q = 0 ; q <= qty.length ; q++) {
             if(q === i){
-        const orderQuery=`INSERT INTO items_orders(item_id,quantity)
+        const orderQuery=`INSERT INTO orders(order_no,quantity)
         values($1,$2)
         RETURNING *
         `;
-
-
         db.query(orderQuery,[id[i],qty[q]])
         .then((result) => {
           //  console.log("order",result.rows)

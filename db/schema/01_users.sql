@@ -11,8 +11,8 @@ DROP TABLE IF EXISTS orders CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  phone VARCHAR(32)  NOT NULL,
+  customer_name VARCHAR(50),
+  phone_number VARCHAR(32),
   email VARCHAR(255)
 );
 
@@ -33,23 +33,18 @@ CREATE TABLE items (
 );
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id SERIAL,
-  customer_name VARCHAR(50),
-  phone_number VARCHAR(32),
-  time  time  ,
-  estimated_time time ,
-  completed_time  time ,
-  complete BOOLEAN  DEFAULT TRUE
-
-
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  order_time TIMESTAMP DEFAULT NOW() ,
+  estimated_time TIMESTAMP ,
+  completed_time  TIMESTAMP,
+  quantity INTEGER  NOT NULL DEFAULT 0,
+  complete BOOLEAN  DEFAULT TRUE,
+   item_no INTEGER,
+  total_cost INTEGER DEFAULT NULL
 );
 CREATE TABLE items_orders(
   id SERIAL PRIMARY KEY NOT NULL,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
-  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
-  quantity INTEGER  NOT NULL DEFAULT 0,
-  -- name VARCHAR(50),
-  customer_id INTEGER
-
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE
 );
 

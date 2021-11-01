@@ -1,7 +1,7 @@
 $(() => {
   const url = location.href;
   console.log("url",url)
-  const category_id = url.substr(22, url.length - 1);
+  const category_id = url.substr(22,url.length - 1);
 
   console.log("ca",category_id)
   $("button.cart").click(() => {
@@ -63,6 +63,7 @@ $(() => {
       method: "GET",
       dataType: "json",
       success: (data) => {
+        console.log("data",data)
         generateItems(data.menus);
         generateCatagories(data.categories);
         generateOrder();
@@ -72,13 +73,18 @@ $(() => {
       },
     });
   };
+
   if (!category_id) {
     fetchData("/api/menu/");
-  } else {
+    console.log("data",fetchData)
+  } else  {
     fetchData("/api/menu/" + category_id);
-
+    console.log("dataid",fetchData)
   }
-  fetchData("/api/cart/");
+
+      // fetchData("/api/main");
+
+
   // const fetchData2 = (endpoint2) => {
   //   $.ajax({
   //     url: `${endpoint2}`,
@@ -86,11 +92,13 @@ $(() => {
   //     dataType: "json",
   //     success: (data) => {
   //       console.log("dataCart", data);
-  //       createOrderElement(data);
+  //       generateItems(data.menus);
+  //       generateCatagories(data.categories);
+  //       generateOrder();
   //     },
   //   });
   // };
-  // fetchData2("/api/cart");
+
 
   const generateItems = function (items) {
     $("section.item_container").empty();

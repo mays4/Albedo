@@ -8,27 +8,26 @@ module.exports = (db) => {
       //  console.log("what",req.body)
       // res.send(JSON.stringify(req.body));
       //  const addOrder=function () {
-        const orderQuery=`INSERT INTO orders(customer_name,phone_number) values($1,$2) RETURNING *`;
+        const orderQuery=`INSERT INTO users(customer_name,phone_number) values($1,$2) RETURNING *`;
         db.query(orderQuery,[name,phone])
         .then((result) => {
           // for ( let i of id){
-          const ItemsQuery=`INSERT INTO items_orders(order_id)
-              SELECT user_id FROM orders  LEFT JOIN items_orders
-              RETURNING *
-           `
-          db.query(ItemsQuery)
-          .then((result) => {
-            console.log("rows",result.rows);
-          return(result.rows);
-          })
-          .catch((err)=> {
-            console.log(err.message);
-          })
-
-          // console.log("re",result.rows)
-          //INSERT INTO items_orders(quantity) values($1),
-          return(result.rows);
-        // }
+        //   const ItemsQuery=`INSERT INTO orders(user_id)
+        //       SELECT id FROM users
+        //       RETURNING *
+        //    `
+        //   db.query(ItemsQuery)
+        //   .then((result) => {
+        //     console.log("rows",result.rows);
+        //   return(result.rows);
+        //   })
+        //   .catch((err)=> {
+        //     console.log(err.message);
+        //   })
+        //   // console.log("re",result.rows)
+        //   //INSERT INTO items_orders(quantity) values($1),
+        //   return(result.rows);
+        // // }
         })
         .catch((err) => {
           console.log(err.message);

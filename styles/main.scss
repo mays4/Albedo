@@ -3,6 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  flex-direction: column;
 
 
 
@@ -30,3 +31,126 @@ background: linear-gradient(
 //   rgba(163, 208, 219, 1) 100%
 
 // )
+
+.pcolor{
+  align-self: flex-start;
+  color :black ;
+  font: optional;
+  font-size: 24px;
+  padding-left: 2em;
+  word-break: break-all;
+  border-radius: 2px;
+  border-color: blue;
+}
+.p-color{
+  align-self: flex-end;
+  padding-left: 400px;
+  font-size: 24px;
+
+}
+
+button.icon{
+  color: rgb(37, 20, 190);
+  padding-right: 2em;
+  align-self: flex-end;
+
+}
+
+footer{
+  border: none;
+  background-color: transparent;
+  align-self: center;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.avatar{
+  padding-left: 50px;
+  align-self: flex-start;
+  color :black ;
+}
+ul i:hover {
+  color:rgb(131, 131, 56);
+}
+
+.name-of-avatar{
+color :black ;
+}
+.handle{
+  padding-right:50px;
+  color :black ;
+}
+
+.line{
+  width: 100%;
+  border-color: teal ;
+
+}
+.tweet:hover {
+  box-shadow: 0.5rem 0.5rem rgb(23, 41, 124), -0.5rem -0.5rem rgb(2, 20, 36);
+}
+.tweet{
+  width: 80%;
+  margin: 20px;
+  margin-left: 60px;
+  border: black 3em;
+  height: 350px;
+  background-color: rgb(194, 115, 154);
+  border: black solid 3px;
+}
+.header_name {
+  padding-top: 30px;
+  // display: flex;
+  justify-content: space-between;
+  // flex-direction: column;
+  align-items: center;
+}
+
+.avatar_name{
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  // justify-content: space-between;
+}
+
+#error{
+  padding :0  0  0 2em ;
+  display: none;
+ border:red ;
+ border-radius: 4em;
+ border-style: solid;
+}
+
+.box{
+  display: flex;
+  flex-direction:column;
+  // border-color: rgb(22, 22, 24);
+  border-width: thick;
+  border-style:groove;
+  // justify-content: space-between;
+  // word-break: break-all;
+  width: 400px;
+
+}
+
+
+.section-container{
+  margin-top: 10px;
+display: flex;
+//  height: 180px;
+ margin-bottom: 0;
+
+}
+.section-container-main{
+  display: flex;
+  // margin-top:40px;
+  // padding-top: 20px;
+
+}
+#slide{
+max-width:700px;
+// height: 100px;
+margin-top: 100px;
+// padding-top: 200px;
+}

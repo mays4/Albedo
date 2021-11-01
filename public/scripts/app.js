@@ -3,7 +3,7 @@
 $(() => {
 
   $(".sec-cont").on("click", "#submit_button", function () {
-    console.log("checkout click ");
+    console.log("checkout click");
     // createItemElement(item)
   });
 

@@ -1,8 +1,8 @@
 
 
-INSERT INTO users (name,phone)VALUES ('mary','647-322-5656');
-INSERT INTO users (name,phone)VALUES ('ali',4169232121);
-INSERT INTO users (name,phone)VALUES ('rose',416233211);
+-- INSERT INTO users (name,phone)VALUES ('mary','647-322-5656');
+-- INSERT INTO users (name,phone)VALUES ('ali',4169232121);
+-- INSERT INTO users (name,phone)VALUES ('rose',416233211);
 INSERT INTO categories (name) VALUES ('appetizer');
 INSERT INTO categories (name) VALUES ('soup');
 INSERT INTO categories (name) VALUES ('salad');
@@ -20,13 +20,13 @@ INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('ca
 INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('Fattoush salad',' Levantine salad made from toasted or fried pieces of khubz combined with mixed greens and other vegetables, such as radishes and tomatoes',159,3,'images/fattoush.jpg',3.99);
 
 INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('kabab',' cooked meat dish, with its origins in Middle Eastern cuisine.',145,4,'images/kabab.jpg',8.99);
-INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('burger','  ground meat, typically beef—placed inside a sliced bread roll or bun.',225,4,'images/burger.jpg',7.99);
+INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('burger','  ground meat, typically beef—placed inside a sliced bread roll or bun.',225,4,'public/images/burger.jpg',7.99);
 
 INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('pizza',' Dough, sauce (usually tomato sauce), cheese ',309,5,'images/pizza.jpg',6.99);
 INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('chicken scallop','fried chicken breast',344,5,'images/chicken.jpg',7.99);
 
 INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('tea','black tea',1,8,'images/tea.jpg',2.99);
-INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('coffee','coffee with milk ',31,8,'images/coffee.jpg',3.45);
+INSERT INTO items (name,description,cal,category_id,image_url,price) VALUES ('coffee','coffee with milk ',31,8,'https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1024-512,f_auto,q_auto:best/newscms/2019_33/2203981/171026-better-coffee-boost-se-329p.jpg',3.45);
 
 
 
